@@ -3,7 +3,7 @@ import { LogisticResponse } from './logistic.interface';
 import { MessagePattern } from '@nestjs/microservices';
 import { LogisticService } from './logistic.service';
 
-@Controller('')
+@Controller()
 export class LogisticController {
   constructor(private readonly logisticService: LogisticService) {}
 
