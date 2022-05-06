@@ -7,7 +7,6 @@ export class LogisticService {
   public createSentOrder(orderId: number): LogisticResponse {
     let result: LogisticResponse = {
       id: 0,
-      success: true,
       errorMessage: null
     };
 

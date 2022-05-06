@@ -13,10 +13,4 @@ describe('AppController', () => {
 
     appController = app.get<LogisticController>(LogisticController);
   });
-
-  describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
-    });
-  });
 });

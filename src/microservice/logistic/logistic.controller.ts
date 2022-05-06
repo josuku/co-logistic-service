@@ -9,7 +9,7 @@ export class LogisticController {
 
   @MessagePattern('createSentOrder')
   public async createSentOrder(@Body() orderId: number): Promise<LogisticResponse> {
-    Logger.log(orderId)
+    Logger.log('received createSentOrder request with orderId:' + orderId.toString(), 'createSentOrder')
     if (orderId <= 0) {
       Logger.error('Bad Request', orderId);
       throw new BadRequestException();

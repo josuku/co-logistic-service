@@ -7,4 +7,4 @@ import { LogisticService } from './logistic/logistic.service';
   controllers: [LogisticController],
   providers: [LogisticService],
 })
-export class ApiModule {}
+export class MicroServiceModule {}
