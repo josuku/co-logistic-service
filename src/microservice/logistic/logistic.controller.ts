@@ -12,7 +12,10 @@ export class LogisticController {
     Logger.log('received createSentOrder request with orderId:' + orderId.toString(), 'createSentOrder')
     if (orderId <= 0) {
       Logger.error('Bad Request', orderId);
-      throw new BadRequestException();
+      return {
+        id: 0,
+        errorMessage: 'Bad Request'
+      };
     }
     return this.logisticService.createSentOrder(orderId);
   }

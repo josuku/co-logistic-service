@@ -1,18 +1,29 @@
 import { Injectable } from '@nestjs/common';
-import { randomInt } from 'crypto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { LogisticEntity } from 'src/entities/logistic.entity';
 import { LogisticResponse } from './logistic.interface';
 
 @Injectable()
 export class LogisticService {
-  public createSentOrder(orderId: number): LogisticResponse {
+
+  constructor(
+    @InjectRepository(LogisticEntity) private logisticRepository: Repository<LogisticEntity>
+  ) {}
+
+  public async createSentOrder(orderId: number): Promise<LogisticResponse> {
     let result: LogisticResponse = {
       id: 0,
       errorMessage: null
     };
 
-    // TODO Process logistic order creation
-    
-    result.id = randomInt(1000);
+    try {
+      const logistic = { orderId: orderId };
+      const newLogistic = this.logisticRepository.save(logistic);
+      result.id = (await newLogistic).id;
+    } catch (error) {
+      result.errorMessage = error.sqlMessage;
+    }
 
     return result;
   }
